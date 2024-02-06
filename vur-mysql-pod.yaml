@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  labels:
+    app: mysql # Добавление метки
+spec:
+  containers:
+  - name: mysql
+    image: mysql:latest
+    env:
+    - name: VUR_PASS
+      value: "12345678"
+    - name: VUR_USER
+      value: "root" 
+    - name: VUR_DB
+      value: "db"
+    ports:
+    - containerPort: 3306
+    volumeMounts:
+    - name: mysql-storage
+      mountPath: /var/lib/mysql
+    - name: mysql-initdb
+      mountPath: /docker-entrypoint-initdb.d
+  volumes:
+  - name: mysql-storage
+    persistentVolumeClaim:
+      claimName: mysql-pvc
+  - name: mysql-initdb
+    configMap:
+      name: mysql-initdb-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS texts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        uuid VARCHAR(36) NOT NULL,
+        encrypted_text TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+

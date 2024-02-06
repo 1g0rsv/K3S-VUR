@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vur-vue
+  labels:
+    app: vur-app # Добавленная метка
+  namespace: default
+spec:
+  containers:
+  - name: vur-vue
+    image: igorsky888/vur:vur-vue-v1.0.12
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: volv
+      mountPath: /data
+    ports:
+    - containerPort: 80
+  volumes:
+  - name: volv
+    persistentVolumeClaim:
+      claimName: mysql-pvc

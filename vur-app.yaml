@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vur-app
+  labels:
+    app: vur-app # Добавленная метка
+  namespace: default
+spec:
+  containers:
+  - name: vur-app
+    image: igorsky888/vur:vur-app-v1.0.04
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: volv
+      mountPath: /data
+    ports:
+    - containerPort: 80
+    env:
+    - name: HEX_KEY
+      value: "02486b43dd1e356ccea3a755816958fa1a577a3d5a3d56ba0d4b3e77137baddb"
+    - name: VUR_PASS
+      value: "12345678"
+    - name: VUR_USER
+      value: "root"
+    - name: VUR_DB
+      value: "db"
+  volumes:
+  - name: volv
+    persistentVolumeClaim:
+      claimName: mysql-pvc
