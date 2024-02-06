@@ -50,3 +50,6 @@ To deploy the VUR application on your own k3s cluster, follow these steps:
    kubectl apply -f vur-vue.yaml
    kubectl apply -f vur-vue-service.yaml
 
+
+## Additional Information
+This deployment is an example of a cloud-native application leveraging Kubernetes for orchestration. It demonstrates my ability to design and implement a full-stack application deployment on a modern container platform.
