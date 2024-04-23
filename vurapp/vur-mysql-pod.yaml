@@ -9,12 +9,12 @@ spec:
   - name: mysql
     image: mysql:latest
     env:
-    - name: VUR_PASS
-      value: "12345678"
-    - name: VUR_USER
-      value: "root" 
-    - name: VUR_DB
+    - name: MYSQL_ROOT_PASSWORD
+      value: "12345678"  # Задайте безопасный пароль
+    - name: MYSQL_DATABASE
       value: "db"
+    - name: MYSQL_USER
+      value: "root"
     ports:
     - containerPort: 3306
     volumeMounts:
@@ -42,5 +42,3 @@ data:
         encrypted_text TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
-
-
