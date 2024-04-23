@@ -10,11 +10,11 @@ spec:
     image: mysql:latest
     env:
     - name: MYSQL_ROOT_PASSWORD
-      value: "12345678"  # Задайте безопасный пароль
+      value: "12345678"
+    - name: MYSQL_USER
+      value: "root" 
     - name: MYSQL_DATABASE
       value: "db"
-    - name: MYSQL_USER
-      value: "root"
     ports:
     - containerPort: 3306
     volumeMounts:
@@ -42,3 +42,5 @@ data:
         encrypted_text TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
+
+
