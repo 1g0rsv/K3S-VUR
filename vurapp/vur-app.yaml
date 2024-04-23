@@ -18,11 +18,11 @@ spec:
     env:
     - name: HEX_KEY
       value: "02486b43dd1e356ccea3a755816958fa1a577a3d5a3d56ba0d4b3e77137baddb"
-    - name: VUR_PASS
+    - name: MYSQL_ROOT_PASSWORD
       value: "12345678"
-    - name: VUR_USER
+    - name: MYSQL_DATABASE
       value: "root"
-    - name: VUR_DB
+    - name: MYSQL_DATABASE
       value: "db"
   volumes:
   - name: volv
